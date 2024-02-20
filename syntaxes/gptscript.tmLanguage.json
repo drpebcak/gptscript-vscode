@@ -1,35 +1,214 @@
 {
-    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-    "name": "GPTScript",
+    "scopeName": "source.gptscript",
+    "name": "gptscript",
     "patterns": [
         {
-            "name": "comment.line.gptscript",
-            "match": "#.*$"
-        },
-        {
-            "name": "keyword.control.gptscript",
-            "match": "^---$"
-        },
-        {
-            "name": "entity.name.section.gptscript",
-            "match": "^[nN]ame:.*$"
-        },
-        {
-            "name": "entity.name.function.gptscript",
-            "match": "^[tT]ools:.*$"
-        },
-        {
-            "name": "string.unquoted.gptscript",
-            "match": "^[dD]escription:.*$"
-        },
-        {
-            "name": "variable.parameter.gptscript",
-            "match": "^[aA]rgs:.*$"
-        },
-        {
-            "name": "constant.numeric.gptscript",
-            "match": "^[tT]emperature:.*$"
+            "include": "#tool"
         }
     ],
-    "scopeName": "source.gptscript"
+    "repository": {
+        "tool": {
+            "patterns": [
+                {
+                    "include": "#header"
+                },
+                {
+                    "include": "#body"
+                }
+            ]
+        },
+        "header": {
+            "patterns": [
+                {
+                    "include": "#name"
+                },
+                {
+                    "include": "#tools"
+                },
+                {
+                    "include": "#description"
+                },
+                {
+                    "include": "#model-name"
+                },
+                {
+                    "include": "#max-tokens"
+                },
+                {
+                    "include": "#temperature"
+                },
+                {
+                    "include": "#json-response"
+                },
+                {
+                    "include": "#internal-prompt"
+                },
+                {
+                    "include": "#arg"
+                }
+            ]
+        },
+        "name": {
+            "patterns": [
+                {
+                    "match": "(?i)(\\b(Name)\\b):([^:]*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.parameter.gptscript"
+                        },
+                        "3": {
+                            "name": "entity.name.function"
+                        }
+                    }
+                }
+            ]
+        },
+        "tools": {
+            "patterns": [
+                {
+                    "match": "(?i)(\\b(Tool|Tools)\\b):([^:]*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.parameter.gptscript"
+                        },
+                        "3": {
+                            "patterns": [
+                                {
+                                    "match": "\\b\\w+\\b",
+                                    "name": "variable.parameter.function"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "description": {
+            "patterns": [
+                {
+                    "match": "(?i)(\\b(Description)\\b):([^:]*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.parameter.gptscript"
+                        },
+                        "3": {
+                            "name": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "model-name": {
+            "patterns": [
+                {
+                    "match": "(?i)(\\b(Model Name)\\b):([^:]*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.parameter.gptscript"
+                        },
+                        "3": {
+                            "name": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "max-tokens": {
+            "patterns": [
+                {
+                    "match": "(?i)(\\b(Max Tokens)\\b):([^:]*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.parameter.gptscript"
+                        },
+                        "3": {
+                            "name": "numeric"
+                        }
+                    }
+                }
+            ]
+        },
+        "temperature": {
+            "patterns": [
+                {
+                    "match": "(?i)(\\b(Temperature)\\b):([^:]*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.parameter.gptscript"
+                        },
+                        "3": {
+                            "name": "numeric"
+                        }
+                    }
+                }
+            ]
+        },
+        "json-response": {
+            "patterns": [
+                {
+                    "match": "(?i)(\\b(JSON Response)\\b):([^:]*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.parameter.gptscript"
+                        },
+                        "3": {
+                            "name": "boolean"
+                        }
+                    }
+                }
+            ]
+        },
+        "internal-prompt": {
+            "patterns": [
+                {
+                    "match": "(?i)(\\b(Internal Prompt)\\b):([^:]*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.parameter.gptscript"
+                        },
+                        "3": {
+                            "name": "boolean"
+                        }
+                    }
+                }
+            ]
+        },
+        "arg": {
+            "patterns": [
+                {
+                    "match": "(?i)(\\b(Arg|Args)\\b):([^:]*):([^:]*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.parameter.gptscript"
+                        },
+                        "3": {
+                            "name": "variable.parameter.function"
+                        },
+                        "4": {
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "match": "(?i)(\\b(Arg|Args)\\b):([^:]*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.parameter.gptscript"
+                        },
+                        "3": {
+                            "name": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "body": {
+            "patterns": [
+                {
+                    "name": "string",
+                    "match": "^---+"
+                }
+            ]
+        }
+    }
 }
