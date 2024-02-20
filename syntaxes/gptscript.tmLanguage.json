@@ -1,0 +1,35 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "GPTScript",
+    "patterns": [
+        {
+            "name": "comment.line.gptscript",
+            "match": "#.*$"
+        },
+        {
+            "name": "keyword.control.gptscript",
+            "match": "^---$"
+        },
+        {
+            "name": "entity.name.section.gptscript",
+            "match": "^[nN]ame:.*$"
+        },
+        {
+            "name": "entity.name.function.gptscript",
+            "match": "^[tT]ools:.*$"
+        },
+        {
+            "name": "string.unquoted.gptscript",
+            "match": "^[dD]escription:.*$"
+        },
+        {
+            "name": "variable.parameter.gptscript",
+            "match": "^[aA]rgs:.*$"
+        },
+        {
+            "name": "constant.numeric.gptscript",
+            "match": "^[tT]emperature:.*$"
+        }
+    ],
+    "scopeName": "source.gptscript"
+}

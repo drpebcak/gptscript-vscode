@@ -1,0 +1,25 @@
+{
+  "name": "gptscript",
+  "displayName": "gptscript",
+  "description": "Plugin for working with gptscript",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "gptscript",
+      "aliases": ["GPTScript", "gptscript"],
+      "extensions": [".gpt"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "gptscript",
+      "scopeName": "source.gptscript",
+      "path": "./syntaxes/gptscript.tmLanguage.json"
+    }]
+  }
+}
